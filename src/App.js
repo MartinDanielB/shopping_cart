@@ -3,8 +3,14 @@ import './App.css';
 import SearchComponent from './components/SearchComponent';
 import ShowCourseComponent from './components/ShowCourseComponent';
 import UserCartComponent from './components/UserCartComponent';
+import NavigationBar from './components/NavBar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Features from './components/Features';
+import Pricing from './components/Pricing';
 
 function App() {
+
   const [courses, setCourses] = useState([
     {
       id: 1,
@@ -28,6 +34,7 @@ function App() {
         'https://media.geeksforgeeks.org/wp-content/uploads/20230823165623/gfg3.jpg'
     }
   ]);
+
 
   const [cartCourses, setCartCourses] = useState([]);
   const [searchCourse, setSearchCourse] = useState('');
@@ -70,6 +77,16 @@ function App() {
 
   return (
     <div className="App">
+      <Router>
+  <NavigationBar />
+  <Routes>
+    <Route path="/home" element={<Home />} />
+    <Route path="/features" element={<Features />} />
+    <Route path="/pricing" element={<Pricing />} />
+    {/* Add more routes as needed */}
+  </Routes>
+</Router>
+
       <SearchComponent searchCourse={searchCourse}
         courseSearchUserFunction=
         {courseSearchUserFunction} />

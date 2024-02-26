@@ -319,3 +319,12 @@ body {
 .checkout-section .checkout-button:hover {
 	background-color: #4c5cb6;
 }
+/* src/components/Navbar.css */
+
+.navbar {
+  background-color: #000; /* Customize as needed */
+}
+
+.nav-link {
+  color: #fff; /* Customize as needed */
+}
