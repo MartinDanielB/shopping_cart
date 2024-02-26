@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Features from './components/Features';
 import Pricing from './components/Pricing';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function App() {
 
@@ -74,18 +75,23 @@ function App() {
   const filterCourseFunction = courses.filter((course) =>
     course.name.toLowerCase().includes(searchCourse.toLowerCase())
   );
+  const { loginWithRedirect } = useAuth0();
+  const handleLogin = () => {
+    loginWithRedirect();
+  };
 
   return (
     <div className="App">
       <Router>
-  <NavigationBar />
-  <Routes>
-    <Route path="/home" element={<Home />} />
-    <Route path="/features" element={<Features />} />
-    <Route path="/pricing" element={<Pricing />} />
-    {/* Add more routes as needed */}
-  </Routes>
-</Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/pricing" element={<Pricing />} />
+          {/* Add more routes as needed */}
+        </Routes>
+      </Router>
+      <button onClick={handleLogin}>Login</button>
 
       <SearchComponent searchCourse={searchCourse}
         courseSearchUserFunction=
